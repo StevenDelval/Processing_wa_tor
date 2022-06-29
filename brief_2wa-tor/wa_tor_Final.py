@@ -6,8 +6,8 @@ nb_ligne = int(input("Nombre de ligne : ") or 5)
 temps_repro_poisson = int(input("Temps de repro des poissons : ") or 4)
 temps_repro_requin = int(input("Temps de repro des requins :") or 4)
 energie_req = int(input("Energie requins :") or 2)
-nb_poisson=int(input("Nombre de poisson :") or 20)
-nb_requin=int(input("Nombre de requin :") or 20)
+#nb_poisson=int(input("Nombre de poisson :") or 20)
+#nb_requin=int(input("Nombre de requin :") or 20)
 
 
 class Planete:
@@ -245,7 +245,7 @@ def generation(monde,nb_poisson,nb_requin):
     return monde
 '''
 
-Planete.monde= [[choice([Planete.Poisson(x,y),Planete.Poisson(x,y),Planete.Poisson(x,y),"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-",Planete.Requin(x,y)]) for y in range(nb_colonne)] for x in range(nb_ligne)]
+Planete.monde=[[choice([Planete.Poisson(x,y),Planete.Poisson(x,y),Planete.Poisson(x,y),"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-",Planete.Requin(x,y)]) for y in range(nb_colonne)] for x in range(nb_ligne)]
 
 for i in Planete.monde:
         for j in i:
@@ -281,7 +281,7 @@ afficher_monde(Planete.monde)
 print("\n")
 
 
-while compteur < 30:
+while True:
     print("Tour "+str(compteur), "\n")
     print("il y a :", Planete.Poisson.nb_poisson, "poisson")
     print("il y a :", Planete.Requin.nb_requin, "requin")
@@ -290,6 +290,8 @@ while compteur < 30:
         for j in i:
             if j != "-":
                 liste_pop.append(j)
+    if len(liste_pop) == 0:
+        break
     for i in liste_pop:
         if isinstance(i, Planete.Poisson):
             Planete.monde, i = i.deplacement_poison(Planete.monde)
