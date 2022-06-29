@@ -225,7 +225,7 @@ class Planete:
             self.energie -= 1
 
             return monde, self,liste
-Planete.monde = [["-" for y in range(nb_colonne)] for x in range(nb_ligne)]
+'''Planete.monde = [["-" for y in range(nb_colonne)] for x in range(nb_ligne)]
 def generation(monde,nb_poisson,nb_requin):
     while nb_poisson != 0 and nb_requin !=0:
         for ligne in range(nb_ligne):
@@ -243,21 +243,23 @@ def generation(monde,nb_poisson,nb_requin):
                         Planete.Poisson.nb_poisson -= 1
                         Planete.Requin.nb_requin -= 1
     return monde
+'''
 
+Planete.monde= [[choice([Planete.Poisson(x,y),Planete.Poisson(x,y),Planete.Poisson(x,y),"-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-",Planete.Requin(x,y)]) for y in range(nb_colonne)] for x in range(nb_ligne)]
 
-
-""" Planete.monde = [[["-"] for y in range(nb_colonne)] for x in range(nb_ligne)]
 for i in Planete.monde:
-    for j in i:
-        if not isinstance(j, Planete.Poisson):
-            Planete.Poisson.nb_poisson -= 1
-        if not isinstance(j, Planete.Requin):
-            Planete.Requin.nb_requin -= 1 """
+        for j in i:
+            if isinstance(j,Planete.Poisson):
+                Planete.Poisson.nb_poisson -=2
+            if not isinstance(j,Planete.Poisson):
+                Planete.Poisson.nb_poisson -=3
+            if not isinstance(j,Planete.Requin):
+                Planete.Requin.nb_requin -=1
 
 
 compteur = 1
 
-Planete.monde=generation(Planete.monde,nb_poisson,nb_requin)
+#Planete.monde=generation(Planete.monde,nb_poisson,nb_requin)
 def afficher_monde(monde):
     for i in monde:
         for j in i:
