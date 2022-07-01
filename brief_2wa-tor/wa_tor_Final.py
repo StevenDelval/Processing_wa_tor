@@ -1,11 +1,12 @@
 from random import choice, randint
 from time import sleep
+import csv
 
-nb_colonne = int(input("Nombre de colonne : ") or 5)
-nb_ligne = int(input("Nombre de ligne : ") or 5)
+nb_colonne = int(input("Nombre de colonne : ") or 10)
+nb_ligne = int(input("Nombre de ligne : ") or 10)
 temps_repro_poisson = int(input("Temps de repro des poissons : ") or 4)
-temps_repro_requin = int(input("Temps de repro des requins :") or 4)
-energie_req = int(input("Energie requins :") or 2)
+temps_repro_requin = int(input("Temps de repro des requins :") or 16)
+energie_req = int(input("Energie requins :") or 6)
 #nb_poisson=int(input("Nombre de poisson :") or 20)
 #nb_requin=int(input("Nombre de requin :") or 20)
 
@@ -279,12 +280,15 @@ def afficher_monde(monde):
 print("\n")
 afficher_monde(Planete.monde)
 print("\n")
-
+with open("resultat_wator_l{0}_c{1}.csv".format(nb_ligne,nb_colonne),'w') as resultat :
+        resultat.write("Poisson,Requin\n")
 
 while True:
     print("Tour "+str(compteur), "\n")
     print("il y a :", Planete.Poisson.nb_poisson, "poisson")
     print("il y a :", Planete.Requin.nb_requin, "requin")
+    with open("resultat_wator_l{0}_c{1}.csv".format(nb_ligne,nb_colonne),'a') as resultat :
+        resultat.write("{0},{1}\n".format(Planete.Poisson.nb_poisson,Planete.Requin.nb_requin))
     liste_pop = []
     for i in Planete.monde:
         for j in i:
@@ -301,7 +305,7 @@ while True:
     
 
     compteur += 1
-    sleep(1)
+    
 
 print("_____\n")    
 afficher_monde(Planete.monde)
