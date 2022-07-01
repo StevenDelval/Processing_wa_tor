@@ -286,7 +286,7 @@ with open("resultat_wator_l{0}_c{1}.csv".format(nb_ligne,nb_colonne),'w') as res
 while True:
     print("Tour "+str(compteur), "\n")
     print("il y a :", Planete.Poisson.nb_poisson, "poisson")
-    print("il y a :", Planete.Requin.nb_requin, "requin")
+    print("il y a :", Planete.Requin.nb_requin, "requin\n")
     with open("resultat_wator_l{0}_c{1}.csv".format(nb_ligne,nb_colonne),'a') as resultat :
         resultat.write("{0},{1}\n".format(Planete.Poisson.nb_poisson,Planete.Requin.nb_requin))
     liste_pop = []
@@ -295,6 +295,8 @@ while True:
             if j != "-":
                 liste_pop.append(j)
     if len(liste_pop) == 0:
+        break
+    if Planete.Poisson.nb_poisson == Planete.nombre_de_case:
         break
     for i in liste_pop:
         if isinstance(i, Planete.Poisson):
@@ -305,7 +307,7 @@ while True:
     
 
     compteur += 1
-    
+    afficher_monde(Planete.monde)
+    print("_____\n") 
+   
 
-print("_____\n")    
-afficher_monde(Planete.monde)
